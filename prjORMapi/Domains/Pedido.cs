@@ -1,18 +1,15 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace prjORMapi.Domains
 {
-    public class Pedido
+    public class Pedido : BaseDomain
     {
-        [Key]
-        public Guid Id { get; set; }
-        public string Status { get; set; }
-        public DateTime MyProperty { get; set; }
 
-        public Pedido()
-        {
-            Id = Guid.NewGuid();
-        }
+        public string Status { get; set; }
+        public DateTime OrderDate { get; set; }
+
+         public List<PedidoItem> PedidosItens { get; set; }
     }
 }
