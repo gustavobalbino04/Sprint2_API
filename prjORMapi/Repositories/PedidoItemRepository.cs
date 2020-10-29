@@ -1,12 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using prjORMapi.Contexts;
 using prjORMapi.Domains;
 using prjORMapi.Interfaces;
 
 namespace prjORMapi.Repositories
 {
+    [Microsoft.AspNetCore.Components.Route("api/[controller]")]
+        [ApiController]
     public class PedidoItemRepository : IPedidoItemRepository
     {
          private readonly PedidoContext _ctx;
@@ -16,7 +19,16 @@ namespace prjORMapi.Repositories
         }
         public void Adicionar(PedidoItem pedidoItem)
         {
-            throw new NotImplementedException();
+            try{
+            
+            _ctx.PedidoItems.Add(pedidoItem);
+          
+            _ctx.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public PedidoItem BuscarPorId(Guid id)

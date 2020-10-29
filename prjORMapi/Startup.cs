@@ -17,6 +17,9 @@ namespace prjORMapi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc(option => option.EnableEndpointRouting = false);
+            services.AddControllers().AddNewtonsoftJson(Options => {
+                Options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -27,12 +30,14 @@ namespace prjORMapi
                 app.UseDeveloperExceptionPage();
             }
 
-            
+            app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseMvc(
-
-            );
+            app.UseMvc();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

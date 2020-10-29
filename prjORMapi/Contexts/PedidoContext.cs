@@ -13,7 +13,7 @@ namespace prjORMapi.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-               optionsBuilder.UseSqlServer(@"Data source= LAPTOP-KNDOV3AI\SQLEXPRESS;Initial Catalog=PedidosItem;user id=sa; password=sa132");
+               optionsBuilder.UseSqlServer(@"Data source=LAPTOP-KNDOV3AI\SQLEXPRESS;Initial Catalog=PedidosItem;user id=sa; password=sa132");
 
             base.OnConfiguring(optionsBuilder);
         }  

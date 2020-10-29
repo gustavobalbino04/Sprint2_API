@@ -41,7 +41,7 @@ namespace prjORMapi.Repositories
 
                 return pedido;
            }
-           catch (Exception ex)
+           catch (System.Exception ex)
            {
                
                throw new Exception(ex.Message);
