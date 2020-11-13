@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using prjORMapi.Domains;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace prjORMapi.Interfaces
 {
@@ -9,7 +11,7 @@ namespace prjORMapi.Interfaces
          List<PedidoItem> Listar();
          
          PedidoItem BuscarPorId(Guid id);
-         void Adicionar(PedidoItem pedidoItem);
+         void Adicionar(PedidoItem pedidoItens);
          void Remover(Guid id);
     }
 }

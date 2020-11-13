@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using prjORMapi.Domains;
@@ -9,17 +10,16 @@ namespace prjORMapi.Controllers
    
     [Microsoft.AspNetCore.Components.Route("api/[controller]")]
     [ApiController]
-    public class Pedidocontroller : ControllerBase
+    public class Pedidoscontroller : ControllerBase
     {
         private readonly IPedidoRepository _pedidoRepository;
         
-    }
-    public PedidosController()
+    public  Pedidoscontroller()
     {
         _pedidoRepository = new PedidoRepository();
     }
     /// <summary>
-        /// Ler todos os pedidos cadastrados
+         /// Ler todos os pedidos cadastrados
         /// </summary>
         /// <returns>Lista de pedidos</returns>
         [HttpGet]
@@ -42,15 +42,15 @@ namespace prjORMapi.Controllers
 
             }
         }
-        [HttpPost]
+       [HttpPost]
        public IActionResult Post(List<PedidoItem> pedidosItems)
         {
             try
             {
 
-                Pedido pedido = _pedidoReposiory.Adicionar(pedidosItems);
+                Pedido pedidos = _pedidoRepository.Adicionar(pedidosItems);
 
-                return Ok(pedido);
+                return Ok(pedidos);
             }
             catch (System.Exception ex)
             {
@@ -58,4 +58,5 @@ namespace prjORMapi.Controllers
             }
         }
 
+    };
 }

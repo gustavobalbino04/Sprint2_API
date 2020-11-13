@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using prjORMapi.Contexts;
 using prjORMapi.Domains;
 using prjORMapi.Interfaces;
+using System.Threading.Tasks;
 
 namespace prjORMapi.Repositories
 {
@@ -17,11 +18,11 @@ namespace prjORMapi.Repositories
         {
             _ctx = new PedidoContext();
         }
-        public void Adicionar(PedidoItem pedidoItem)
+        public void Adicionar(PedidoItem pedidoItens)
         {
             try{
             
-            _ctx.PedidoItems.Add(pedidoItem);
+            _ctx.PedidoItems.Add(pedidoItens);
           
             _ctx.SaveChanges();
             }
@@ -48,7 +49,8 @@ namespace prjORMapi.Repositories
         {
              try
             {
-                return _ctx.PedidoItems.ToList();
+                List<PedidoItem> pitens = _ctx.PedidoItems.ToList();
+                return pitens;
             }
             catch (Exception ex)
             {

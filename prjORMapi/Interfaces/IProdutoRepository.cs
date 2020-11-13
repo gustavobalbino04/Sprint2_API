@@ -9,8 +9,8 @@ namespace prjORMapi.Interfaces
          List<Produto> Listar();
          List<Produto>  BuscarPorNome(string nome);
          Produto BuscarPorId(Guid id);
-         void Adicionar(Produto produto);
-         void Editar(Produto produto);
+         Produto Adicionar(Produto produto);
+         Produto Editar(Produto produto);
          void Remover(Guid id);
 
          

@@ -7,7 +7,8 @@ namespace prjORMapi.Interfaces
     {
          List<Pedido> Listar();
 
-         Pedido Adicionar(List<PedidoItem> pedidosItens);
+         Pedido Adicionar(List<PedidoItem> _pedidosItens);
+         
          
     }
 }

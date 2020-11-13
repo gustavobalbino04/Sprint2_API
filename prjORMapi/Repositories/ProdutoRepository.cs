@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using prjORMapi.Contexts;
-using prjORMapi.Domains;
-using prjORMapi.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using bet.Contexts;
+using bet.Domains;
+using bet.Interfaces;
 
-namespace prjORMapi.Repositories
+namespace bet.Repositories
 {
+   
     public class ProdutoRepository : IProdutoRepository
     {
         private readonly PedidoContext _ctx;
@@ -153,5 +155,5 @@ namespace prjORMapi.Repositories
 
 
         #endregion
-    }
+     }
 }

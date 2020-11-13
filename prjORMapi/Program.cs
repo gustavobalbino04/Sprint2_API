@@ -22,6 +22,6 @@ namespace prjORMapi
                 {
                     webBuilder.UseStartup<Startup>();
                 });
-    
+        
     }
 }

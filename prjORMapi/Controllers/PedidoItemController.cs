@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using prjORMapi.Domains;
 using prjORMapi.Interfaces;
 using prjORMapi.Repositories;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace prjORMapi.Controllers
 {
@@ -22,11 +24,20 @@ namespace prjORMapi.Controllers
         /// Ler todos os pedidosItems cadastrados
         /// </summary>
         /// <returns>Lista de pedidosItem</returns>
-        [HttpGet]
-        public IActionResult Get()
+        [HttpGet("{id}")]
+        public PedidoItem Get(Guid id)
         {
+            try
+            {
+                return _pedidoItemRepository.BuscarPorId(id);
+                
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
 
-                var pedidoItems = _pedidoItemRepository.Listar();
         }
           /// <summary>
         /// Exclui um pedidoItem do sistema
@@ -75,9 +86,9 @@ namespace prjORMapi.Controllers
         /// </summary>
         /// <returns>Lista pedidositem</returns>
         [HttpGet]
-         public IActionResult Get()
+         public List<PedidoItem> Get()
         {
-           var pedidoItem = _pedidoItemRepository.Listar();
+           return _pedidoItemRepository.Listar();
         }
         
 

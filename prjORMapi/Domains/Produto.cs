@@ -11,8 +11,8 @@ namespace prjORMapi.Domains
     {
         public string Nome { get; set; }
         public float Preco { get; set; }
-        [NotMapped]
-        [JsonIgnore]
+        [NotMapped]//nao mapeia a propriedade
+        [JsonIgnore]//ignora o parametro de retorno do Json
         public IFormFile Imagem { get; set; }
         public string UrlImagem { get; set; }
 

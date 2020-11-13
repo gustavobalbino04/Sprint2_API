@@ -11,5 +11,10 @@ namespace prjORMapi.Domains
         public DateTime OrderDate { get; set; }
 
          public List<PedidoItem> PedidosItens { get; set; }
+
+         public Pedido()
+         {
+             PedidosItens = new List<PedidoItem>();
+         }
     }
 }

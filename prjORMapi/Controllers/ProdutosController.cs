@@ -31,20 +31,20 @@ namespace prjORMapi.Controllers
             try
             {
                 //Lista os produtos no repositório
-                var produtos = _produtoRepository.Listar();
+                var produto = _produtoRepository.Listar();
 
                 //Verifica se existe produtos, caso não exista retorna
                 //NoContent - Sem Contúdo
-                if (produtos.Count == 0)
+                if (produto.Count == 0)
                     return NoContent();
 
                 //Caso exista retorna Ok e os produtos
                 return Ok(new { 
-                    totalCount = produtos.Count,
-                    data = produtos
+                    totalCount = produto.Count,
+                    data = produto
                 });
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 //Caso ocorra algum erro retorna BadRequest e a mensagem de erro
                 //TODO: Gravar mensagem de erro log e retornar BadRequest
@@ -73,9 +73,14 @@ namespace prjORMapi.Controllers
                 if (produto == null)
                     return NotFound();
 
+                Moeda dolar = new Moeda();
+
                 //Caso produto exista retorna 
                 //Ok e os dados do produto
-                return Ok(produto);
+                return Ok(new{
+                    produto,
+                    valorDolar = produto.Preco / dolar.GetDolarValue()
+                });
             }
             catch (Exception ex)
             {
@@ -98,7 +103,7 @@ namespace prjORMapi.Controllers
                 if(produto.Imagem != null)
 
                 {
-                    var urlImagem - Upload.Local(produto.Imagem);
+                 var urlImagem = Upload.Local(produto.Imagem);
                     produto.UrlImagem = urlImagem;
                 }
 
@@ -130,7 +135,6 @@ namespace prjORMapi.Controllers
                 if (produtoTemp == null)
                     return NotFound();
 
-                produto.Id = id;
                 _produtoRepository.Editar(produto);
 
                 return Ok(produto);
@@ -153,9 +157,15 @@ namespace prjORMapi.Controllers
         {
             try
             {
+                Produto _produto = _produtoRepository.BuscarPorId(id);
+                if(_produto == null)
+                {
+                    return NotFound();
+                }
                 _produtoRepository.Remover(id);
+                
 
-                return Ok(id);
+                return Ok(_produto);
             }
             catch (Exception ex)
             {
